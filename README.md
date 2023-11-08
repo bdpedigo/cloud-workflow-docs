@@ -20,6 +20,8 @@ auth.save_token(token=<your new token>)
 ```
 
 ## Google Cloud Storage 
+Currently, authentication is done using service accounts. You'll need an administrator to give you 
+the public/private keys for a service account, likely with read/write access to a bucket.
 
 ## Amazon SQS
 Make sure that your `aws-secret.json` is set. This should look something like this: 
