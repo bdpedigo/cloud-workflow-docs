@@ -8,7 +8,7 @@ Minimal working example for cloud workflow using CAVE, Amazon SQS, Google Cloud 
 flowchart LR
     queuer["queuer\n(Python file)"]
 
-    queue["task queue\n(Amazon SQS)"]
+    queue["queue\n(Amazon SQS)"]
     click queue "https://aws.amazon.com/sqs/" "Amazon SQS"
 
     deadletter["dead letter queue\n(Amazon SQS)"]
@@ -26,29 +26,28 @@ flowchart LR
 
     subgraph compute ["compute cluster (Google Kubernetes Engine)"]
         direction LR
-        subgraph node1[node 1]
+        subgraph node1[node]
             worker1
             worker2
         end
-        subgraph node2[node 2]
+        subgraph node2[node]
             worker3
             worker4
         end
     end
 
-    queuer -- "puts jobs" --> queue
+    queuer -- "puts jobs\n(task-queue)" --> queue
     queue -- "puts unrunnable jobs" --> deadletter
     deadletter -- "debug" --> queuer
-    queue -- "pulls jobs" --> worker1
+    queue -- "pulls jobs\n(task-queue)" --> worker1
     queue -- "pulls jobs" --> worker2
     queue -- "pulls jobs" --> worker3
     queue -- "pulls jobs" --> worker4
-    worker1 -- "puts data" --> storage
+    worker1 -- "puts data\n(cloud-files)" --> storage
     worker2 -- "puts data" --> storage
     worker3 -- "puts data" --> storage
     worker4 -- "puts data" --> storage
-    storage -- "pulls data" --> analysis
-
+    storage -- "pulls data\n(cloud-files)" --> analysis
 ```
 
 ## CAVEclient
