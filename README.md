@@ -2,6 +2,35 @@
 
 Minimal working example for cloud workflow using CAVE, Amazon SQS, Google Cloud Storage, etc.
 
+## Diagram 
+
+```mermaid
+flowchart TD
+    queuer["queuer\n(Python file)"]
+    queue["task queue\n(Amazon SQS)"]
+    worker["worker\n(Dockerized python)"]
+    worker2["worker\n(Dockerized python)"]
+    worker3["worker\n(Dockerized python)"]
+    storage["cloud storage\n(Google Cloud Storage)"]
+    analysis["analysis\n(Python file)"]
+
+    subgraph "compute cluster\n(Google Kubernetes Engine)"
+        worker
+        worker2
+        worker3
+    end
+
+    queuer -- "requests jobs" --> queue
+    queue -- "pulls jobs" --> worker
+    queue -- "pulls jobs" --> worker2
+    queue -- "pulls jobs" --> worker3
+    worker -- "writes data" --> storage
+    worker2 -- "writes data" --> storage
+    worker3 -- "writes data" --> storage
+    storage -- "pulls data" --> analysis
+
+```
+
 ## CAVEclient
 From a fresh virtual environment,
 ```
