@@ -1,6 +1,13 @@
-# cloud-workflow-mwe
+# cloud-workflow-mwe <!-- omit in toc -->
 
 Minimal working example for cloud workflow using CAVE, Amazon SQS, Google Cloud Storage, etc.
+
+- [Diagram](#diagram)
+- [CAVEclient](#caveclient)
+- [Google Cloud Storage](#google-cloud-storage)
+- [Amazon SQS](#amazon-sqs)
+- [Docker](#docker)
+- [Google Kubernetes Engine](#google-kubernetes-engine)
 
 ## Diagram
 
