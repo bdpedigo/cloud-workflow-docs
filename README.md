@@ -21,7 +21,7 @@ flowchart LR
     deadletter["dead letter queue\n(Amazon SQS)"]
     click deadletter "https://en.wikipedia.org/wiki/Dead_letter_queue" "Dead letter queue"
 
-    worker1["worker\n(Dockerized python)"]
+    worker1["worker (Dockerized python)"]
     worker2["worker\n(Dockerized python)"]
     worker3["worker\n(Dockerized python)"]
     worker4["worker\n(Dockerized python)"]
