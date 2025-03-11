@@ -1,6 +1,6 @@
 # cloud-workflow-mwe <!-- omit in toc -->
 
-Minimal working example for cloud workflow using CAVE, Amazon SQS, Google Cloud Storage, etc.
+Documenting tips and tricks for cloud workflow using CAVE, Amazon SQS, Google Cloud Storage, etc.
 
 - [Diagram](#diagram)
 - [CAVEclient](#caveclient)
