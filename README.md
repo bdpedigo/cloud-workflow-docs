@@ -171,4 +171,5 @@ Non-terminated Pods:          (24 in total)
 - You don't have to set a CPU limit! This can help with letting pods work as hard as the physical hardware will allow. 
 - On the other hand, you *do* need a memory limit, since Kubernetes will kill pods that exceed their memory limit. This is a good thing, since it prevents a single pod from taking down the whole cluster.
 - Tons of logs or verbose output like TQDM can clog up memory/storage on the nodes and lead to cryptic crashing events.
+- The "memory allocatable" for a node is slightly less than advertised (e.g. 29GB instead of 32GB) so keep this in mind when setting memory requests/limits.
 - I highly recommend [K9s](https://github.com/derailed/k9s) for more detailed information about the pods and nodes.
