@@ -166,5 +166,8 @@ Non-terminated Pods:          (24 in total)
   kube-system                 pdcsi-node-cfqhv                                            10m (0%)      0 (0%)      20Mi (0%)        500Mi (1%)     28m
 ```
 
-- I also highly recommend [K9s](https://github.com/derailed/k9s) for more detailed information about the pods and nodes.
-- Requests vs limits vs usage.
+- Note in the example above that there are a bunch of pods in the `gmp-system` and `kube-system` namespaces that you didn't ask for at all! Kubernetes needs it's own pods to manage other pods. Each of these has its own CPU and memory requests. This means that if you are on 4 cores running 8 pods, and you try to give each exactly 500m of CPU, you won't be able to satisfy the request for all pods. Therefore, it's a good idea to request a bit less than what you'd expect from just simple math on how many CPUs you have. Note that this *request* does not necessarily mean that Kubernetes is using that much CPU or memory.
+- You don't have to set a CPU limit! This can help with letting pods work as hard as the physical hardware will allow. 
+- On the other hand, you *do* need a memory limit, since Kubernetes will kill pods that exceed their memory limit. This is a good thing, since it prevents a single pod from taking down the whole cluster.
+- Tons of logs or verbose output like TQDM can clog up memory/storage on the nodes and lead to cryptic crashing events.
+- I highly recommend [K9s](https://github.com/derailed/k9s) for more detailed information about the pods and nodes.
